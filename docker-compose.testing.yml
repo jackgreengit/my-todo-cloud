@@ -1,0 +1,60 @@
+version: "3"
+
+services:
+  todo-rabbitmq:
+    image: rabbitmq:3.8.3-rc.1
+
+  todo-redis:
+    image: redis:6.0-rc
+
+  todo-postgres:
+    image: greenjack/todo-postgres:testing
+
+  todo-cache-ingestion:
+    build:
+      dockerfile: ../Dockerfile.nodejs.testing
+    image: greenjack/todo-cache-ingestion:testing
+
+  todo-cache-service:
+    build:
+      dockerfile: ../Dockerfile.nodejs.testing
+    image: greenjack/todo-cache-service:testing
+
+  todo-search-ingestion:
+    build:
+      dockerfile: ../Dockerfile.nodejs.testing
+    image: greenjack/todo-search-ingestion:testing
+    command: sh /home/node/app/start.sh
+
+  todo-search-service:
+    build:
+      dockerfile: ../Dockerfile.nodejs.testing
+    image: greenjack/todo-search-service:testing
+    command: sh /home/node/app/start.sh
+
+  todo-storage-ingestion:
+    build:
+      dockerfile: ../Dockerfile.nodejs.testing
+    image: greenjack/todo-storage-ingestion:testing
+    command: sh /home/node/app/start.sh
+
+  todo-storage-service:
+    build:
+      dockerfile: ../Dockerfile.nodejs.testing
+    image: greenjack/todo-storage-service:testing
+
+  todo-api-gateway:
+    build:
+      dockerfile: ../Dockerfile.nodejs.testing
+    image: greenjack/todo-api-gateway:testing
+    command: sh /home/node/app/start.sh
+
+  todo-view:
+    build:
+      dockerfile: Dockerfile.testing
+    image: greenjack/todo-view:testing
+    ports:
+      - 4202:8080
+
+  todo-proxy:
+    image: greenjack/todo-proxy:testing
