@@ -50,5 +50,11 @@ deploy:
   bucket_path: todo-app
   on:
     branch: master
+<<<<<<< HEAD
   access_key_id: $AWS_ACCESS_KEY
   secret_access_key: $AWS_SECRET_KEY
+=======
+  access_key_id: AKIAYCWMU2ZDZ5S6FCKE
+  secret_access_key:
+    secure: 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
+>>>>>>> 7184c40cd370036ebe7b69e8b2ad6a5491956fa5
